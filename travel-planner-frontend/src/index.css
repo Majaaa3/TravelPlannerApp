@@ -1,0 +1,558 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0fafa;
+  color: #1a3c4a;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(135deg, #0a7075 0%, #0d9da4 100%);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 12px rgba(10,112,117,0.3);
+}
+
+.navbar-brand {
+  color: white;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-links a {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.navbar-links a:hover {
+  color: white;
+}
+
+.navbar-links span {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+}
+
+.navbar-links button {
+  background-color: rgba(255,255,255,0.15);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.2s;
+}
+
+.navbar-links button:hover {
+  background-color: rgba(255,255,255,0.25);
+}
+
+/* Page Container */
+.page-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0a7075;
+}
+
+.page-header button {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.page-header button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(249,115,22,0.4);
+}
+
+/* Auth */
+.auth-container {
+  max-width: 420px;
+  margin: 5rem auto;
+  padding: 2.5rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(10,112,117,0.12);
+  border-top: 5px solid #0d9da4;
+}
+
+.auth-container h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0a7075;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-container p {
+  margin-top: 1rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.auth-container a {
+  color: #0d9da4;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Inputs */
+input, textarea, select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: 'Poppins', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #f8fffe;
+  color: #1a3c4a;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #0d9da4;
+  box-shadow: 0 0 0 3px rgba(13,157,164,0.15);
+  background: white;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Buttons */
+button {
+  padding: 0.65rem 1.4rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0a7075, #0d9da4);
+  color: white;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(10,112,117,0.3);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Messages */
+.error-message {
+  background-color: #fff5f5;
+  color: #c53030;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #fc8181;
+  font-size: 0.9rem;
+}
+
+.success-message {
+  background-color: #f0fdfa;
+  color: #0a7075;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #0d9da4;
+  font-size: 0.9rem;
+}
+
+/* Trip Card */
+/* Trip Card */
+.trips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.trip-card {
+  background: white;
+  padding: 0;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(10,112,117,0.08);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #e0f5f5;
+  overflow: hidden;
+}
+
+.trip-card-header {
+  background: linear-gradient(135deg, #0a7075, #0d9da4);
+  padding: 1.2rem 1.5rem;
+  color: white;
+}
+
+.trip-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(10,112,117,0.15);
+}
+
+.trip-card h3 {
+  margin-bottom: 0.3rem;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.trip-card-body {
+  padding: 1.2rem 1.5rem;
+}
+
+.trip-card p {
+  color: #64748b;
+  margin-bottom: 0.4rem;
+  font-size: 0.88rem;
+}
+
+.trip-card-footer {
+  padding: 0.8rem 1.5rem;
+  background: #f0fafa;
+  border-top: 1px solid #e0f5f5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Trip Details */
+.trip-header {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(10,112,117,0.08);
+  margin-bottom: 1.5rem;
+  border-left: 5px solid #f97316;
+  position: relative;
+  overflow: hidden;
+}
+
+.trip-header::after {
+  content: '🗺️';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  opacity: 0.15;
+}
+
+.trip-header h1 {
+  margin-bottom: 0.5rem;
+  color: #0a7075;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.trip-header p {
+  color: #64748b;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0.3rem;
+  margin-bottom: 1.5rem;
+  background: white;
+  padding: 0.4rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(10,112,117,0.08);
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  background: none;
+  color: #64748b;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.2s;
+  transform: none;
+  box-shadow: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.tabs button:hover {
+  background: #e0f5f5;
+  color: #0a7075;
+  transform: none;
+  box-shadow: none;
+}
+
+.tabs button.active {
+  background: linear-gradient(135deg, #0a7075, #0d9da4);
+  color: white;
+  box-shadow: 0 2px 8px rgba(10,112,117,0.3);
+}
+
+/* Tab Content */
+.tab-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(10,112,117,0.08);
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e0f5f5;
+}
+
+.section-header h3 {
+  color: #0a7075;
+  font-weight: 600;
+}
+
+/* Form Container */
+.form-container {
+  background: #f0fafa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border: 1px solid #e0f5f5;
+}
+
+/* List Items */
+.list-item {
+  background: #f8fffe;
+  padding: 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #0d9da4;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.list-item:hover {
+  box-shadow: 0 4px 16px rgba(10,112,117,0.1);
+  transform: translateX(4px);
+}
+
+.list-item h4 {
+  margin-bottom: 0.5rem;
+  color: #0a7075;
+  font-weight: 600;
+}
+
+.list-item h5 {
+  margin-bottom: 0.4rem;
+  color: #1a3c4a;
+  font-weight: 600;
+}
+
+.list-item p {
+  color: #64748b;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: linear-gradient(135deg, #c53030, #e53e3e);
+  color: white;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.delete-btn:hover {
+  box-shadow: 0 4px 12px rgba(197,48,48,0.3);
+}
+
+/* Edit Button */
+.edit-btn {
+  background: linear-gradient(135deg, #0a7075, #0d9da4);
+  color: white;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Activity Group */
+.activity-group {
+  margin-bottom: 1.5rem;
+}
+
+.activity-group h4 {
+  background: linear-gradient(135deg, #0a7075, #0d9da4);
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}
+
+/* Budget Summary */
+.budget-summary {
+  background: linear-gradient(135deg, #e0f5f5, #fef3e8);
+  padding: 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 2rem;
+  border: 1px solid #b2e8e8;
+  flex-wrap: wrap;
+}
+
+.budget-summary p {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Checklist */
+.checklist-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.checklist-form input {
+  flex: 1;
+}
+
+.checklist-form button {
+  width: auto;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: #f8fffe;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  border: 1px solid #e0f5f5;
+  transition: background 0.2s;
+}
+
+.checklist-item:hover {
+  background: #e0f5f5;
+}
+
+.checklist-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #0d9da4;
+}
+
+.checklist-item .delete-btn {
+  margin-left: auto;
+  margin-top: 0;
+  padding: 0.2rem 0.6rem;
+}
+
+/* Admin Table */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(10,112,117,0.08);
+}
+
+.admin-table th {
+  background: linear-gradient(135deg, #0a7075, #0d9da4);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.admin-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #e0f5f5;
+  font-size: 0.9rem;
+  color: #1a3c4a;
+}
+
+.admin-table tr:hover td {
+  background: #f0fafa;
+}
+
+.admin-table td button {
+  margin-right: 0.5rem;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.leaflet-container {
+  height: 500px;
+  width: 100%;
+  border-radius: 12px;
+}
