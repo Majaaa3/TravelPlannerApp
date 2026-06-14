@@ -1,11 +1,14 @@
-﻿# Visual Studio
+﻿# Build outputs
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Visual Studio
 .vs/
 *.user
 *.suo
-
-# Build outputs
-bin/
-obj/
 
 # Node modules
 node_modules/
