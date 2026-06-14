@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StartupServicesManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="SharingService_MinReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="SharingService_PartitionCount" DefaultValue="1" />
+    <Parameter Name="SharingService_TargetReplicaSetSize" DefaultValue="1" />
+    <Parameter Name="ActivityService_InstanceCount" DefaultValue="1" />
+    <Parameter Name="TripService_InstanceCount" DefaultValue="1" />
+    <Parameter Name="UserService_InstanceCount" DefaultValue="1" />
+  </Parameters>
+  <Services>
+    <Service Name="SharingService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatefulService ServiceTypeName="SharingServiceType" TargetReplicaSetSize="[SharingService_TargetReplicaSetSize]" MinReplicaSetSize="[SharingService_MinReplicaSetSize]">
+        <UniformInt64Partition PartitionCount="[SharingService_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
+      </StatefulService>
+    </Service>
+    <Service Name="ActivityService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="ActivityServiceType" InstanceCount="[ActivityService_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="TripService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="TripServiceType" InstanceCount="[TripService_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="UserService" ServicePackageActivationMode="ExclusiveProcess">
+      <StatelessService ServiceTypeName="UserServiceType" InstanceCount="[UserService_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+  </Services>
+</StartupServicesManifest>
