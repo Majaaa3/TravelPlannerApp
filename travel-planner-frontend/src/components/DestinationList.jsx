@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { destinationService } from "../services/destinationService";
 
-export default function DestinationList({ tripId }) {
+export default function DestinationList({ tripId, tripStartDate, tripEndDate }) {
     const [destinations, setDestinations] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -16,6 +16,20 @@ export default function DestinationList({ tripId }) {
     useEffect(() => {
         fetchDestinations();
     }, [tripId]);
+
+    useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => setMessage(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [message]);
+
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => setError(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     const fetchDestinations = async () => {
         setLoading(true);
@@ -46,6 +60,16 @@ export default function DestinationList({ tripId }) {
         if (new Date(formData.departureDate) < new Date(formData.arrivalDate)) {
             setError("Departure date cannot be before arrival date.");
             return;
+        }
+
+        if (tripStartDate && tripEndDate) {
+            const tripStart = new Date(tripStartDate);
+            const tripEnd = new Date(tripEndDate);
+            if (new Date(formData.arrivalDate) < tripStart || 
+                new Date(formData.departureDate) > tripEnd) {
+                setError(`Dates must be within trip period: ${new Date(tripStartDate).toLocaleDateString()} - ${new Date(tripEndDate).toLocaleDateString()}.`);
+                return;
+            }
         }
 
         try {
@@ -112,8 +136,14 @@ export default function DestinationList({ tripId }) {
                 <form onSubmit={handleSubmit} className="form-container">
                     <input type="text" name="name" placeholder="Destination Name *" value={formData.name} onChange={handleChange} />
                     <input type="text" name="location" placeholder="Location *" value={formData.location} onChange={handleChange} />
-                    <input type="date" name="arrivalDate" value={formData.arrivalDate} onChange={handleChange} />
-                    <input type="date" name="departureDate" value={formData.departureDate} onChange={handleChange} />
+                    <input type="date" name="arrivalDate" value={formData.arrivalDate} onChange={handleChange}
+                        min={tripStartDate?.split('T')[0]}
+                        max={tripEndDate?.split('T')[0]}
+                    />
+                    <input type="date" name="departureDate" value={formData.departureDate} onChange={handleChange}
+                        min={tripStartDate?.split('T')[0]}
+                        max={tripEndDate?.split('T')[0]}
+                    />
                     <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange} />
                     <button type="submit">Add Destination</button>
                 </form>
@@ -127,8 +157,16 @@ export default function DestinationList({ tripId }) {
                             <form onSubmit={handleEditSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}>
                                 <input type="text" value={editData.name} onChange={e => setEditData({...editData, name: e.target.value})} placeholder="Name" />
                                 <input type="text" value={editData.location} onChange={e => setEditData({...editData, location: e.target.value})} placeholder="Location" />
-                                <input type="date" value={editData.arrivalDate} onChange={e => setEditData({...editData, arrivalDate: e.target.value})} />
-                                <input type="date" value={editData.departureDate} onChange={e => setEditData({...editData, departureDate: e.target.value})} />
+                                <input type="date" value={editData.arrivalDate} 
+                                    onChange={e => setEditData({...editData, arrivalDate: e.target.value})}
+                                    min={tripStartDate?.split('T')[0]}
+                                    max={tripEndDate?.split('T')[0]}
+                                />
+                                <input type="date" value={editData.departureDate} 
+                                    onChange={e => setEditData({...editData, departureDate: e.target.value})}
+                                    min={tripStartDate?.split('T')[0]}
+                                    max={tripEndDate?.split('T')[0]}
+                                />
                                 <textarea value={editData.description} onChange={e => setEditData({...editData, description: e.target.value})} placeholder="Description" />
                                 <div style={{ display: "flex", gap: "0.5rem" }}>
                                     <button type="submit">Save</button>

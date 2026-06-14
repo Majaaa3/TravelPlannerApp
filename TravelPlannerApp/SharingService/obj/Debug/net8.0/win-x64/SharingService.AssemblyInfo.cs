@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SharingService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+036db4bf4644edd491f33e71856a3c7997f3fa58")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1332a34d268663c1bdba59cd1ed3561f6645c4df")]
 [assembly: System.Reflection.AssemblyProductAttribute("SharingService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SharingService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

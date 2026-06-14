@@ -102,7 +102,13 @@ export default function TripDetailsPage() {
                     <button onClick={() => setActiveTab("calendar")} className={activeTab === "calendar" ? "active" : ""}>Calendar</button>
                 </div>
                 <div className="tab-content">
-                    {activeTab === "destinations" && <DestinationList tripId={id} />}
+                    {activeTab === "destinations" && 
+                        <DestinationList 
+                            tripId={id}
+                            tripStartDate={currentTrip.startDate}
+                            tripEndDate={currentTrip.endDate}
+                        />
+                    }
                     {activeTab === "activities" && 
                         <ActivityList 
                             tripId={id} 

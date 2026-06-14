@@ -15,6 +15,20 @@ export default function ExpenseList({ tripId }) {
         fetchExpenses();
     }, [tripId]);
 
+    useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => setMessage(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [message]);
+
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => setError(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
+
     const fetchExpenses = async () => {
         setLoading(true);
         try {

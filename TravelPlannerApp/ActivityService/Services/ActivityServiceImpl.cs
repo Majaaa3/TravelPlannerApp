@@ -77,6 +77,10 @@ namespace ActivityService.Services
             if (dto.EstimatedCost < 0)
                 throw new Exception("Estimated cost cannot be negative.");
 
+            var relatedExpense = await _context.Expenses
+                .FirstOrDefaultAsync(e => e.Name == $"Activity: {activity.Name}"
+                    && e.TripId == activity.TripId);
+
             activity.Name = dto.Name;
             activity.Date = dto.Date;
             activity.Time = dto.Time;
@@ -84,6 +88,13 @@ namespace ActivityService.Services
             activity.Description = dto.Description;
             activity.EstimatedCost = dto.EstimatedCost;
             activity.Status = dto.Status;
+
+            if (relatedExpense != null)
+            {
+                relatedExpense.Name = $"Activity: {dto.Name}";
+                relatedExpense.Amount = dto.EstimatedCost;
+                relatedExpense.Date = dto.Date;
+            }
 
             await _context.SaveChangesAsync();
             return MapToDto(activity);
