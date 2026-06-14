@@ -556,3 +556,17 @@ button:disabled {
   width: 100%;
   border-radius: 12px;
 }
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.error-message {
+    animation: fadeOut 3s ease forwards;
+}
+
+.success-message {
+    animation: fadeOut 3s ease forwards;
+}

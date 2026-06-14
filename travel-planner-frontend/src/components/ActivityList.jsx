@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { activityService } from "../services/activityService";
 
-export default function ActivityList({ tripId }) {
+export default function ActivityList({ tripId, tripStartDate, tripEndDate }) {
     const [activities, setActivities] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -17,6 +17,21 @@ export default function ActivityList({ tripId }) {
     useEffect(() => {
         fetchActivities();
     }, [tripId]);
+
+    // Auto-dismiss notifikacije
+    useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => setMessage(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [message]);
+
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => setError(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     const fetchActivities = async () => {
         setLoading(true);
@@ -47,6 +62,18 @@ export default function ActivityList({ tripId }) {
         if (formData.estimatedCost < 0) {
             setError("Estimated cost cannot be negative.");
             return;
+        }
+
+        // Validacija datuma aktivnosti
+        if (tripStartDate && tripEndDate) {
+            const activityDate = new Date(formData.date);
+            const tripStart = new Date(tripStartDate);
+            const tripEnd = new Date(tripEndDate);
+
+            if (activityDate < tripStart || activityDate > tripEnd) {
+                setError(`Activity date must be between ${new Date(tripStartDate).toLocaleDateString()} and ${new Date(tripEndDate).toLocaleDateString()}.`);
+                return;
+            }
         }
 
         try {
@@ -91,6 +118,19 @@ export default function ActivityList({ tripId }) {
 
     const handleEditSubmit = async (e) => {
         e.preventDefault();
+
+        // Validacija datuma pri editu
+        if (tripStartDate && tripEndDate) {
+            const activityDate = new Date(editData.date);
+            const tripStart = new Date(tripStartDate);
+            const tripEnd = new Date(tripEndDate);
+
+            if (activityDate < tripStart || activityDate > tripEnd) {
+                setError(`Activity date must be between ${new Date(tripStartDate).toLocaleDateString()} and ${new Date(tripEndDate).toLocaleDateString()}.`);
+                return;
+            }
+        }
+
         try {
             await activityService.updateActivity(editId, {
                 ...editData,
@@ -129,7 +169,10 @@ export default function ActivityList({ tripId }) {
             {showForm && (
                 <form onSubmit={handleSubmit} className="form-container">
                     <input type="text" name="name" placeholder="Activity Name *" value={formData.name} onChange={handleChange} />
-                    <input type="date" name="date" value={formData.date} onChange={handleChange} />
+                    <input type="date" name="date" value={formData.date} onChange={handleChange}
+                        min={tripStartDate?.split('T')[0]}
+                        max={tripEndDate?.split('T')[0]}
+                    />
                     <input type="time" name="time" value={formData.time} onChange={handleChange} />
                     <input type="text" name="location" placeholder="Location" value={formData.location} onChange={handleChange} />
                     <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange} />
@@ -154,7 +197,11 @@ export default function ActivityList({ tripId }) {
                                 {editId === a.id ? (
                                     <form onSubmit={handleEditSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}>
                                         <input type="text" value={editData.name} onChange={e => setEditData({...editData, name: e.target.value})} placeholder="Name" />
-                                        <input type="date" value={editData.date} onChange={e => setEditData({...editData, date: e.target.value})} />
+                                        <input type="date" value={editData.date}
+                                            onChange={e => setEditData({...editData, date: e.target.value})}
+                                            min={tripStartDate?.split('T')[0]}
+                                            max={tripEndDate?.split('T')[0]}
+                                        />
                                         <input type="time" value={editData.time} onChange={e => setEditData({...editData, time: e.target.value})} />
                                         <input type="text" value={editData.location} onChange={e => setEditData({...editData, location: e.target.value})} placeholder="Location" />
                                         <textarea value={editData.description} onChange={e => setEditData({...editData, description: e.target.value})} placeholder="Description" />

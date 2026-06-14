@@ -103,7 +103,13 @@ export default function TripDetailsPage() {
                 </div>
                 <div className="tab-content">
                     {activeTab === "destinations" && <DestinationList tripId={id} />}
-                    {activeTab === "activities" && <ActivityList tripId={id} />}
+                    {activeTab === "activities" && 
+                        <ActivityList 
+                            tripId={id} 
+                            tripStartDate={currentTrip.startDate}
+                            tripEndDate={currentTrip.endDate}
+                        />
+                    }
                     {activeTab === "expenses" && <ExpenseList tripId={currentTrip} />}
                     {activeTab === "checklist" && <ChecklistComponent tripId={id} />}
                     {activeTab === "share" && <ShareTrip tripId={id} />}
