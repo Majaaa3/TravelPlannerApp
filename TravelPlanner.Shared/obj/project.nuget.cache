@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "TEDozn9F4PFDwHVKAgweUbgCmggtAQqzL1g8NtbP4LP4uXhMzaC7HdARPBOQBCOvqz97rIzuPf1+rqOsZIxMmg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Maja\\TravelPlannerApp\\TravelPlanner.Shared\\TravelPlanner.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Maja\\.nuget\\packages\\microsoft.servicefabric\\11.3.475\\microsoft.servicefabric.11.3.475.nupkg.sha512",
+    "C:\\Users\\Maja\\.nuget\\packages\\microsoft.servicefabric.data\\8.3.475\\microsoft.servicefabric.data.8.3.475.nupkg.sha512",
+    "C:\\Users\\Maja\\.nuget\\packages\\microsoft.servicefabric.data.extensions\\8.3.475\\microsoft.servicefabric.data.extensions.8.3.475.nupkg.sha512",
+    "C:\\Users\\Maja\\.nuget\\packages\\microsoft.servicefabric.data.interfaces\\8.3.475\\microsoft.servicefabric.data.interfaces.8.3.475.nupkg.sha512",
+    "C:\\Users\\Maja\\.nuget\\packages\\microsoft.servicefabric.diagnostics.internal\\8.3.475\\microsoft.servicefabric.diagnostics.internal.8.3.475.nupkg.sha512",
+    "C:\\Users\\Maja\\.nuget\\packages\\microsoft.servicefabric.fabrictransport.internal\\8.3.475\\microsoft.servicefabric.fabrictransport.internal.8.3.475.nupkg.sha512",
+    "C:\\Users\\Maja\\.nuget\\packages\\microsoft.servicefabric.services\\8.3.475\\microsoft.servicefabric.services.8.3.475.nupkg.sha512",
+    "C:\\Users\\Maja\\.nuget\\packages\\microsoft.servicefabric.services.remoting\\8.3.475\\microsoft.servicefabric.services.remoting.8.3.475.nupkg.sha512",
+    "C:\\Users\\Maja\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512"
+  ],
+  "logs": []
+}
